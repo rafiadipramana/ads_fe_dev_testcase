@@ -10,10 +10,25 @@ import '../constants/colors.dart';
 
 import 'package:badges/badges.dart' as badges;
 
-class HomeScreen extends StatelessWidget {
+import '../widgets/custom_bottom_navbar.dart';
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   static const routeName = '/home-screen';
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +99,10 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [CustomSearchBar(), CategorySlider(), ProductShowcase()],
           ),
+        ),
+        bottomNavigationBar: BottomNavBarV2(
+          currentIndex: _currentIndex,
+          onTap: _onItemTapped,
         ),
       ),
     );

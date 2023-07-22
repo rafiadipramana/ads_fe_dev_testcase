@@ -1,4 +1,8 @@
 import 'package:ads_fe_dev_testcase/constants/colors.dart';
+import 'package:ads_fe_dev_testcase/widgets/address_information.dart';
+import 'package:ads_fe_dev_testcase/widgets/alert_dialog.dart';
+import 'package:ads_fe_dev_testcase/widgets/bank_information.dart';
+import 'package:ads_fe_dev_testcase/widgets/contact_information.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -52,114 +56,22 @@ class CheckoutScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          margin: EdgeInsets.only(bottom: 16),
-                          child: Text(
-                            'Checkout Information',
-                            style: GoogleFonts.raleway(
-                                fontSize: 14, fontWeight: FontWeight.w600),
-                          ),
-                        ),
+                            margin: EdgeInsets.only(bottom: 12),
+                            child: ContactInformation()),
                         Container(
-                          margin: const EdgeInsets.only(bottom: 16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(10),
-                                    margin: EdgeInsets.only(right: 12),
-                                    decoration: BoxDecoration(
-                                        color: secondary,
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(12),
-                                            bottomLeft: Radius.circular(12))),
-                                    child: SvgPicture.asset(
-                                        "assets/icons/phone.svg",
-                                        width: 20),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '+62821-39-488-953',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      Text(
-                                        'Phone',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            color: textContentColor),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 40),
-                                child: SvgPicture.asset("assets/icons/edit.svg",
-                                    width: 25),
-                              ),
-                            ],
-                          ),
-                        ),
+                            margin: EdgeInsets.only(bottom: 12),
+                            child: AddressInformation()),
                         Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(10),
-                                    margin: EdgeInsets.only(right: 12),
-                                    decoration: BoxDecoration(
-                                        color: secondary,
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(12),
-                                            bottomLeft: Radius.circular(12))),
-                                    child: SvgPicture.asset(
-                                        "assets/icons/phone.svg",
-                                        width: 20),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '+62821-39-488-953',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      Text(
-                                        'Phone',
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            color: textContentColor),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 40),
-                                child: SvgPicture.asset("assets/icons/edit.svg",
-                                    width: 25),
-                              ),
-                            ],
-                          ),
-                        ),
+                            margin: EdgeInsets.only(bottom: 12),
+                            child: BankInformation())
                       ],
                     ),
                   )
                 ],
               ),
             ),
+
+            // Informasi Pembayaran
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               decoration: BoxDecoration(color: white),
@@ -225,7 +137,11 @@ class CheckoutScreen extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 32, top: 30),
                       width: double.infinity,
                       child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) => CheckoutSuccessDialog());
+                          },
                           style: ElevatedButton.styleFrom(
                               elevation: 0,
                               backgroundColor: primaryColor,
